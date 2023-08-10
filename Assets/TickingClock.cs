@@ -55,12 +55,12 @@ public class TickingClock : MonoBehaviour
         if (CheckHourChanged())
         {
             handHour.rotation = Quaternion.Euler(currentTime.Hour * hoursToDegrees + 90, 0.0f, -90.0f);
-            audioSource.Play();
+            audioSource.Play(); // A different audio clip can be played here
         }
         if (CheckMinuteChanged())
         {
             handMinute.rotation = Quaternion.Euler(currentTime.Minute * minutesToDegrees + 90, 0.0f, -90.0f);
-            audioSource.Play();
+            audioSource.Play();// A different audio clip can be played here
         }
         if (CheckSecondChanged())
         {
