@@ -15,6 +15,16 @@ Attributes
 Services
 
 - `Injector` finding and satisfying dependencies. All instances will be Monobehaviours.
+
+1. `Injector` utilizes reflection's `BindingFlags` to find the desired denpendency providers.
+2. To automatically find all dependency providers, take advantage of Unity's `FindMonoBehaviour` method to find all providers marked as `IDependencyProvider`
+3. `Injector` as a dictionary for registering the dependency providers and their return types. Once the providers are found, they can be invoked with optional parameters.
+4. A helper function `IsInjectable` returns any fields marked as `[Inject]`. Using `FindMonoBehaviour().Where()` to look for any injectable fields inside a MonoBehaviour object.
+5. `IsInjectable` uses `GetType()` to find `[Inject]` marks.
+6. `Any()` and `Where()` ([Know more about them](https://stackoverflow.com/questions/3703256/linq-extension-methods-any-vs-where-vs-exists)) are LINQ extention methods.`Any()` return a boolean (wheter or not any items match). `Where()` returns a new sequence of items matching the predicate.
+7. `Inject` method in `Injector` finds `[Inject]` marks in object fields, resolve the provider type and assigns the instance to the `[Inject]` field instance.
+8. `Resovle` helps determine if the provider instance is registered.
+
 - `Provider` supplies dependencies to the injection system. All instances will be Monobehaviours. Can supply itself as references.
 
 Interfaces
