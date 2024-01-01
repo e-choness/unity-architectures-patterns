@@ -11,5 +11,10 @@ namespace DependencyInjection
         {
             _serviceA = serviceA;
         }
+
+        private void Start()
+        {
+            _serviceA.Initialize("ServiceA initialized from ClassA.");
+        }
     }
 }

@@ -6,26 +6,6 @@ using UnityEngine;
 
 namespace DependencyInjection
 {
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Method)]
-    public sealed class InjectAttribute : Attribute
-    {
-        public InjectAttribute()
-        {
-            
-        }
-    }
-
-    [AttributeUsage(AttributeTargets.Method)]
-    public sealed class ProvideAttribute : Attribute
-    {
-        public ProvideAttribute()
-        {
-            
-        }
-    }
-
-    public interface IDependencyProvider {}
-
     public class Injector : Singleton<Injector>
     {
         private const BindingFlags ProviderBindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
@@ -63,11 +43,29 @@ namespace DependencyInjection
                 var resolvedInstance = Resolve(fieldType);
                 if (resolvedInstance == null)
                 {
-                    throw new Exception($"Failed to inject {fieldType.Name} into {type.Name}");
+                    throw new Exception($"Failed to inject field{fieldType.Name} into {type.Name}");
                 }
                 
                 injectableField.SetValue(instance, resolvedInstance);
-                Debug.Log($"Injected {fieldType.Name} into {type.Name}");
+                Debug.Log($"Field injected {fieldType.Name} into {type.Name}");
+            }
+
+            var injectableMethods = type.GetMethods(ProviderBindingFlags)
+                .Where(memeber => Attribute.IsDefined(memeber, typeof(InjectAttribute)));
+
+            foreach (var injectableMethod in injectableMethods)
+            {
+                var requiredParameters = injectableMethod.GetParameters()
+                    .Select(parameter => parameter.ParameterType)
+                    .ToArray();
+                var resolvedInstances = requiredParameters.Select(Resolve).ToArray();
+                if (resolvedInstances.Any(resolvedInstances => resolvedInstances == null))
+                {
+                    throw new Exception($"Failed to inject method {type.Name}.{injectableMethod.Name}");
+                }
+
+                injectableMethod.Invoke(instance, resolvedInstances);
+                Debug.Log($"Method injected {type.Name}.{injectableMethod.Name}");
             }
         }
 
