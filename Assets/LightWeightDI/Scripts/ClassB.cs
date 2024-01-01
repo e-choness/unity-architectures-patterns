@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DependencyInjection
 {
@@ -13,6 +14,12 @@ namespace DependencyInjection
         public void Init(FactoryA factoryA)
         {
             _factoryA = factoryA;
+        }
+
+        private void Start()
+        {
+            _serviceA.Initialize("ServiceA initialized from ClassB.");
+            _serviceB.Initialize("ServiceB initialized from ClassB.");
         }
     }
 }
