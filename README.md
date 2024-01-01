@@ -2,14 +2,15 @@
 
 ## Start
 
-A light-weight example of dependency injection using [Provide] and [Inject] attributes.
+A light-weight example of dependency injection using `[Provide]` and `[Inject]` attributes.
+The system relies on the[ attributes and reflection](https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/reflection-and-attributes/) in .NET System.
 
 ### Scripts Contents
 
 Attributes
 
-- `ProvideAttribute` Providing dependencies.
-- `InjectAttribute` Injecting dependencies.
+- `ProvideAttribute` Providing dependencies. Any instances marked as `[Provide]` attribute, it is expected to be supplied with an instance of dependency.
+- `InjectAttribute` Injecting dependencies. Any field or method marked as `[Inject]` attribute can expect to have the dependency satisfied by the system.
 
 Services
 
@@ -22,4 +23,6 @@ Interfaces
 
 Objects
 
-- `ClassA` and `ClassB` are for testing purposes.
+- `ClassA` contains `ServiceA` and has an `Inject` method `Init` that accepts and assigns an instance of `ServiceA` into the field.
+- `ClassB` contains both `Injuect` field attribute as for `ServiceA` and `ServiceB`, for variaty purposes. `FactoryA` follows `Inject` method attribute by using `Init` method.
+  
