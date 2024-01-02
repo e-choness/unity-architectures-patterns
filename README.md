@@ -125,6 +125,11 @@ class Consumer{
 }
 ```
 
+## In-Editor Tools
+
+- Components(MonoBehaviours) that has injectables will appear in `Component/Scripts/DependencyInjection`
+- `Injector` component has two buttons `Validate Dependencies` and `Clear All Injectable Fields`.
+
 ## Credits
 
 [Unity-Dependency-Injection-Lite](https://github.com/adammyhre/Unity-Dependency-Injection-Lite/tree/master) from [adammyhre](https://github.com/adammyhre)
