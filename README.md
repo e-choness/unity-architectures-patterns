@@ -41,3 +41,7 @@ The system relies on the[attributes and reflection](https://learn.microsoft.com/
   10. For injectable fields use `SetValue()` to assign instances. For injectable methods use `Invoke()` to call them.
 
 - `Provider` supplies dependencies to the injection system. All instances will be Monobehaviours. Can supply itself as references.
+
+### Utilities
+
+- `Singleton` inherits from `MonoBehaviour`. It attempts to find existing object that has the same Component. If not create one and attach a new Component of the same Type.
