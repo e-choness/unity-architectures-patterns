@@ -1,6 +1,6 @@
 ﻿namespace DependencyInjection
 {
-    public class FactoryA
+    public class FactoryA : IFactoryA
     {
         private ServiceA _cachedServiceA;
         public ServiceA CreateServiceA()

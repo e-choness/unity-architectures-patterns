@@ -4,12 +4,12 @@ namespace DependencyInjection
 {
     public class ClassA : MonoBehaviour
     {
-        private ServiceA _serviceA;
+        private IServiceA _serviceA;
 
         [Inject] private IEnvironmentSystem _environmentSystem;
         
         [Inject]
-        public void Init(ServiceA serviceA)
+        public void Init(IServiceA serviceA)
         {
             _serviceA = serviceA;
         }
