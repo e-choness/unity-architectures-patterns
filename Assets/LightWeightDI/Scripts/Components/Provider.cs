@@ -17,6 +17,12 @@ namespace DependencyInjection
         }
 
         [Provide]
+        public IServiceC ProvideServiceC()
+        {
+            return new ServiceC();
+        }
+
+        [Provide]
         public IFactoryA ProvideFactoryA()
         {
             return new FactoryA();

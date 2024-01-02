@@ -5,13 +5,14 @@ namespace DependencyInjection
     public class ClassB : MonoBehaviour
     {
         [Inject] private IServiceA _serviceA;
-        [Inject] private IServiceB _serviceB;
+        private IServiceB _serviceB;
 
         private IFactoryA _factoryA;
 
         [Inject]
-        public void Init(IFactoryA factoryA)
+        public void Init(IServiceB serviceB, IFactoryA factoryA)
         {
+            _serviceB = serviceB;
             _factoryA = factoryA;
         }
 
