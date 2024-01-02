@@ -6,6 +6,8 @@ namespace DependencyInjection
     {
         private ServiceA _serviceA;
 
+        [Inject] private EnvironmentSystem _environmentSystem;
+        
         [Inject]
         public void Init(ServiceA serviceA)
         {
@@ -15,6 +17,7 @@ namespace DependencyInjection
         private void Start()
         {
             _serviceA.Initialize("ServiceA initialized from ClassA.");
+            _environmentSystem.Initialize();
         }
     }
 }
