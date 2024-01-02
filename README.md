@@ -52,3 +52,6 @@ The system relies on the[attributes and reflection](https://learn.microsoft.com/
 ### Utilities
 
 - `Singleton` inherits from `MonoBehaviour`. It attempts to find existing object that has the same Component. If not create one and attach a new Component of the same Type.
+
+## Credits
+[Unity-Dependency-Injection-Lite](https://github.com/adammyhre/Unity-Dependency-Injection-Lite/tree/master) from [adammyhre](https://github.com/adammyhre)
