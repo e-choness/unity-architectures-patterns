@@ -2,7 +2,7 @@
 
 namespace DependencyInjection
 {
-    public class ServiceA
+    public class ServiceA : IServiceA
     {
         public void Initialize(string message = null)
         {

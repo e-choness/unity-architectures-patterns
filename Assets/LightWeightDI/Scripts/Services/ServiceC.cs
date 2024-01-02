@@ -2,11 +2,11 @@
 
 namespace DependencyInjection
 {
-    public class ServiceB : IServiceB
+    public class ServiceC : IServiceC
     {
         public void Initialize(string message = null)
         {
-            Debug.Log($"ServiceB.Initialize({message})");
+            Debug.Log($"ServiceC.Initialize{message}");
         }
     }
 }

@@ -37,9 +37,11 @@ The system relies on the[attributes and reflection](https://learn.microsoft.com/
   5. `IsInjectable` uses `GetType().GetFeilds()` to find field `[Inject]` marks.
   6. `Any()` and `Where()` ([Know more about them](https://stackoverflow.com/questions/3703256/linq-extension-methods-any-vs-where-vs-exists)) are LINQ extention methods.`Any()` return a boolean (wheter or not any items match). `Where()` returns a new sequence of items matching the predicate.
   7. `Inject` method in `Injector` finds `[Inject]` marks in object fields by using `type.GetFields()`, resolve the provider type and assigns the instance to the `[Inject]` field instance.
-  8. Similarly `Inject` finds method `[Inject]` marks by using `type.GetMethods()`. These methods accept injectables as parameters. The query is using LINQ `Select()` to find matching parameter types and return them as an array.
-  9. `Resovle` helps determine if the provider instance is registered.
-  10. For injectable fields use `SetValue()` to assign instances. For injectable methods use `Invoke()` to call them.
+  8. Similarly, `Inject` finds method `[Inject]` marks by using `type.GetMethods()`. These methods accept injectables as parameters. The query is using LINQ `Select()` to find matching parameter types and return them as an array.
+  9. Addtionally, to find injectable properties using `type.GetProperties()'. Injectable properties are referred to as members have getters and setters.
+  10. `Resovle` helps determine if the provider instance is registered.
+  11. For injectable fields use `SetValue()` to assign instances. For injectable methods use `Invoke()` to call them.
+  12. Set `Injector` class Attribute as `[DefaultExecutionOrder(<negative number>)]` will allow injector instantiated before any other objects.
 
 - `Provider` supplies dependencies to the injection system. All instances will be Monobehaviours. Can supply itself as references.
 
@@ -53,5 +55,76 @@ The system relies on the[attributes and reflection](https://learn.microsoft.com/
 
 - `Singleton` inherits from `MonoBehaviour`. It attempts to find existing object that has the same Component. If not create one and attach a new Component of the same Type.
 
+## Code Snippets
+
+### Provide Through a Provider
+
+```CSharp
+class Provider{
+    [Provide]
+    public IService ProvideService() {
+        return new Service();
+    }
+}
+```
+
+### Self Provide
+
+```CSharp
+class SelfProvider: IDependencyProvider, ISelfProvider{
+    [Provide]
+    public ISelfProvider ProvideSelf(){
+        return this;
+    }
+}
+```
+
+`ISelfProvider` can be marked as `[Inject]` in other consumers as fields, method parameters or properties.
+
+### Field Injection
+
+```CSharp
+class Consumer{
+    // A established provider can 
+    [Inject] private IService _service;
+}
+```
+
+### Method Injection
+
+```CSharp
+class Consumer{
+    private IService _service;
+    [Inject]
+    public void Init(IService service){
+        _service = service;
+    }
+}
+```
+
+### Property Injection
+
+```CSharp
+class Consumer{
+    [Inject] public IService Service {get; private set; }
+}
+```
+
+### Miltiple Injections
+
+```CSharp
+class Consumer{
+    private IService _service;
+    private IFactory _factory;
+
+    [Inject]
+    public void Init(IService service, IFactory factory){
+        _service = service;
+        _factory = factory;
+    }
+}
+```
+
 ## Credits
+
 [Unity-Dependency-Injection-Lite](https://github.com/adammyhre/Unity-Dependency-Injection-Lite/tree/master) from [adammyhre](https://github.com/adammyhre)

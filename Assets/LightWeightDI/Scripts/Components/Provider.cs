@@ -5,19 +5,25 @@ namespace DependencyInjection
     public class Provider : MonoBehaviour, IDependencyProvider
     {
         [Provide]
-        public ServiceA ProvideServiceA()
+        public IServiceA ProvideServiceA()
         {
             return new ServiceA();
         }
 
         [Provide]
-        public ServiceB ProvideServiceB()
+        public IServiceB ProvideServiceB()
         {
             return new ServiceB();
         }
 
         [Provide]
-        public FactoryA ProvideFactoryA()
+        public IServiceC ProvideServiceC()
+        {
+            return new ServiceC();
+        }
+
+        [Provide]
+        public IFactoryA ProvideFactoryA()
         {
             return new FactoryA();
         }

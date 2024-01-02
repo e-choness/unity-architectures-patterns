@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace DependencyInjection
 {
+    [DefaultExecutionOrder(-1000)]
     public class Injector : Singleton<Injector>
     {
         private const BindingFlags ProviderBindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
