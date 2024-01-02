@@ -6,7 +6,7 @@ namespace DependencyInjection
     {
         private ServiceA _serviceA;
 
-        [Inject] private EnvironmentSystem _environmentSystem;
+        [Inject] private IEnvironmentSystem _environmentSystem;
         
         [Inject]
         public void Init(ServiceA serviceA)

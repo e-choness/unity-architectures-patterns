@@ -2,10 +2,10 @@
 
 namespace DependencyInjection
 {
-    public class EnvironmentSystem : Singleton<EnvironmentSystem>, IDependencyProvider
+    public class EnvironmentSystem : Singleton<EnvironmentSystem>, IDependencyProvider, IEnvironmentSystem
     {
         [Provide]
-        EnvironmentSystem ProvideEnvironmentSystem()
+        public IEnvironmentSystem ProvideEnvironmentSystem()
         {
             return this;
         }
