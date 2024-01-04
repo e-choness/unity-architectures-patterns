@@ -1,6 +1,6 @@
-# Dependency Injection for Unity Projects
+# Architectures and Patterns for Unity Projects
 
-## Prerequisites
+## Dependency Injection
 
 A light-weight example of dependency injection using `[Provide]` and `[Inject]` attributes.
 The system relies on the[attributes and reflection](https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/reflection-and-attributes/) in .NET System.
