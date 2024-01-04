@@ -1,4 +1,6 @@
-﻿namespace DependencyInjection
+﻿using DependencyInjection.Scripts.Interfaces;
+
+namespace DependencyInjection.Scripts.Services
 {
     public class FactoryA : IFactoryA
     {

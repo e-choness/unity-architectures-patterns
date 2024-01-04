@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DependencyInjection
+namespace DependencyInjection.Scripts.Utilities
 {
     public class Singleton<T> : MonoBehaviour where T : Component
     {

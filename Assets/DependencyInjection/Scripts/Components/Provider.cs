@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using DependencyInjection.Scripts.Attributes;
+using DependencyInjection.Scripts.Interfaces;
+using DependencyInjection.Scripts.Services;
+using UnityEngine;
 
-namespace DependencyInjection
+namespace DependencyInjection.Scripts.Components
 {
     public class Provider : MonoBehaviour, IDependencyProvider
     {

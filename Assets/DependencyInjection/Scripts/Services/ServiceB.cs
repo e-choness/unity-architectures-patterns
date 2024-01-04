@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using DependencyInjection.Scripts.Interfaces;
+using UnityEngine;
 
-namespace DependencyInjection
+namespace DependencyInjection.Scripts.Services
 {
     public class ServiceB : IServiceB
     {

@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using DependencyInjection.Scripts.Attributes;
+using DependencyInjection.Scripts.Interfaces;
+using UnityEngine;
 
-namespace DependencyInjection
+namespace DependencyInjection.Scripts.Components
 {
     public class ClassA : MonoBehaviour
     {

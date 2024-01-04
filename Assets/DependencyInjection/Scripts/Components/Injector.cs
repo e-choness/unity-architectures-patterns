@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using DependencyInjection.Scripts.Attributes;
+using DependencyInjection.Scripts.Interfaces;
+using DependencyInjection.Scripts.Utilities;
 using UnityEngine;
 
-namespace DependencyInjection
+namespace DependencyInjection.Scripts.Components
 {
     [DefaultExecutionOrder(-1000)]
     public class Injector : Singleton<Injector>

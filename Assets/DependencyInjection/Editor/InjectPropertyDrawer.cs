@@ -1,8 +1,9 @@
-﻿using UnityEditor;
+﻿using DependencyInjection.Scripts.Attributes;
+using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace DependencyInjection
+namespace DependencyInjection.Editor
 {
     [CustomPropertyDrawer(typeof(InjectAttribute))]
     public class InjectPropertyDrawer : PropertyDrawer

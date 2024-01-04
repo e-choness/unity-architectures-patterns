@@ -1,4 +1,4 @@
-﻿namespace DependencyInjection
+﻿namespace DependencyInjection.Scripts.Interfaces
 {
     public interface IServiceB
     {

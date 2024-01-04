@@ -1,11 +1,12 @@
-﻿using UnityEditor;
+﻿using DependencyInjection.Scripts.Components;
+using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
-namespace DependencyInjection
+namespace DependencyInjection.Editor
 {
     [CustomEditor(typeof(Injector))]
-    public class InjectorEditor : Editor
+    public class InjectorEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
