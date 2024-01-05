@@ -3,10 +3,6 @@ using UnityEngine;
 
 namespace ServerLocator.Scripts
 {
-    public class Service
-    {
-        
-    }
     public class ServiceLocator
     {
         void Global(){}
@@ -28,17 +24,17 @@ namespace ServerLocator.Scripts
             
         }
 
-        void Register(Type type, Service service)
+        void Register(Type type, object service)
         {
             
         }
 
-        void Register<T>(Service service) where T : Type
+        void Register<T>(T service) where T : class
         {
             
         }
 
-        void Get<T>(out Service service) where T : Type
+        void Get<T>(out T service) where T : class
         {
             throw new NotImplementedException("Do something with service and output it.");
         }

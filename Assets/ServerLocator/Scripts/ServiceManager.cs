@@ -1,28 +1,76 @@
 ﻿using System;
-using System.Net.NetworkInformation;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace ServerLocator.Scripts
 {
     public class ServiceManager
     {
-        void Register(Type type, Service service)
+        private readonly Dictionary<Type, object> _services = new();
+        public IEnumerable<object> RegisteredServices => _services.Values;
+
+        #region Register Services
+
+        public ServiceManager Register(Type type, object service)
         {
+            if (!type.IsInstanceOfType(service))
+            {
+                throw new ArgumentException("Type of service does not match type of service interface.",
+                    nameof(service));
+            }
+
+            if (!_services.TryAdd(type, service))
+            {
+                Debug.LogError($"ServiceManager.Register: Service of type {type.FullName} is already registered.");
+            }
             
+            return this;
         }
 
-        void Register<T>(Service service) where T : Type
+        public ServiceManager Register<T>(T service) where T : class
         {
+            var type = typeof(T);
+
+            if (!_services.TryAdd(type, service))
+            {
+                Debug.LogError($"ServiceManager.Register: Service of type {type.FullName} is already registered.");
+            }
             
+            return this;
         }
 
-        void TryGet<T>(out Service service) where T : Type
+        #endregion
+
+        #region Get Services
+
+        public bool TryGet<T>(out T service) where T : class
         {
-            throw new NotImplementedException("Do something to try to get service and output reference.");
+            var type = typeof(T);
+            
+            if (_services.TryGetValue(type, out var obj))
+            {
+                service = obj as T;
+                return true;
+            }
+
+            service = null;
+            return false;
         }
 
-        Service Get<T>()
+        public T Get<T>() where T : class
         {
-            throw new NotImplementedException("Implement get service by type.");
+            var type = typeof(T);
+
+            if (_services.TryGetValue(type, out var service))
+            {
+                return service as T;
+            }
+            throw new ArgumentException(
+                $"ServiceManager.Get: Service of type {type.FullName} does not match service interface.",
+                nameof(service));
         }
+
+        #endregion
+        
     }
 }
