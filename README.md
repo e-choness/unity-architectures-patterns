@@ -144,10 +144,10 @@ Inversion of Control is a way to decouple dependencies of services everytime a M
 
 | Interface | Class | Description |
 |--|--|--|
-| `ILocalization` |  | Mocks a method `GetLocalizedWord()` that takes a word and get translation of another language. |
-| `ISerializer` | | Mocks a method `Serialize()` to serialize objects. |
-| `IAuthentication`|  | Mocks a method `Login()` to login user. |
-| `IGameService`|  | Mocks a method `StartGame()` to run the game. |
+| `ILocalization` | `MockLocalization` | Mocks a method `GetLocalizedWord()` that takes a word and get translation of another language. |
+| `ISerializer` | `MockSerializer` | Mocks a method `Serialize()` to serialize objects. |
+| `IAuthentication`| `MockAuthentication` | Mocks a method `Login()` to login user. |
+| `IGameService`| `MockGameService` | Mocks a method `StartGame()` to run the game. |
 
 ## Credits
 

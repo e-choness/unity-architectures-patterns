@@ -1,4 +1,4 @@
-﻿namespace ServerLocator.Scripts.Services
+﻿namespace ServerLocator.Scripts.Interfaces
 {
     public interface IGameService
     {
