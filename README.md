@@ -139,6 +139,8 @@ Inversion of Control is a way to decouple dependencies of services everytime a M
 - `ServiceLocator` finds services for both the scene and global useage.
 - `Bootstrapper` initializes services on `Awake()`.
 - `ServiceManager` Registers and gets services when needed.
+  1. Both `Register` overloads go through the service type's registration and type check.
+  2. Both `Get` and `TryGet` do registration and type check before return specified type of service.
 
 ### Mock Serviecs
 
