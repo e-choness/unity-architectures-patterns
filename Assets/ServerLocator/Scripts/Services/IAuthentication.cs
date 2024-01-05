@@ -1,6 +1,6 @@
 ﻿namespace ServerLocator.Scripts.Services
 {
-    public interface IAuthenticationService
+    public interface IAuthentication
     {
         void Login();
     }

@@ -5,8 +5,6 @@
 A light-weight example of dependency injection using `[Provide]` and `[Inject]` attributes.
 The system relies on the[attributes and reflection](https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/reflection-and-attributes/) in .NET System.
 
-## Script Contents
-
 ### Attributes
 
 - `ProvideAttribute` Providing dependencies. Any instances marked as `[Provide]` attribute, it is expected to be supplied with an instance of dependency.
@@ -55,9 +53,9 @@ The system relies on the[attributes and reflection](https://learn.microsoft.com/
 
 - `Singleton` inherits from `MonoBehaviour`. It attempts to find existing object that has the same Component. If not create one and attach a new Component of the same Type.
 
-## Code Snippets
+### Code Snippets
 
-### Provide Through a Provider
+- Provide an instance through a provider.
 
 ```CSharp
 class Provider{
@@ -68,7 +66,7 @@ class Provider{
 }
 ```
 
-### Self Provide
+- Self Provide
 
 ```CSharp
 class SelfProvider: IDependencyProvider, ISelfProvider{
@@ -81,7 +79,7 @@ class SelfProvider: IDependencyProvider, ISelfProvider{
 
 `ISelfProvider` can be marked as `[Inject]` in other consumers as fields, method parameters or properties.
 
-### Field Injection
+- Field Injection
 
 ```CSharp
 class Consumer{
@@ -90,7 +88,7 @@ class Consumer{
 }
 ```
 
-### Method Injection
+- Method Injection
 
 ```CSharp
 class Consumer{
@@ -102,7 +100,7 @@ class Consumer{
 }
 ```
 
-### Property Injection
+- Property Injection
 
 ```CSharp
 class Consumer{
@@ -110,7 +108,7 @@ class Consumer{
 }
 ```
 
-### Miltiple Injections
+- Miltiple Injections
 
 ```CSharp
 class Consumer{
@@ -125,11 +123,34 @@ class Consumer{
 }
 ```
 
-## In-Editor Tools
+### In-Editor Tools
 
 - Components(MonoBehaviours) that has injectables will appear in `Component/Scripts/DependencyInjection`
 - `Injector` component has two buttons `Validate Dependencies` and `Clear All Injectable Fields`.
 
+## Service Locator
+
+### Context
+
+Inversion of Control is a way to decouple dependencies of services everytime a MonoBehaviour is trying to access them in the context of Unity. No need to manually link game objects together. Leave the automation process to Service Locator.
+
+### Service Locator Core Modules
+
+- `ServiceLocator` finds services for both the scene and global useage.
+- `Bootstrapper` initializes services on `Awake()`.
+- `ServiceManager` Registers and gets services when needed.
+
+### Mock Serviecs
+
+| Interface | Class | Description |
+|--|--|--|
+| `ILocalization` |  | Mocks a method `GetLocalizedWord()` that takes a word and get translation of another language. |
+| `ISerializer` | | Mocks a method `Serialize()` to serialize objects. |
+| `IAuthentication`|  | Mocks a method `Login()` to login user. |
+| `IGameService`|  | Mocks a method `StartGame()` to run the game. |
+
 ## Credits
 
-[Unity-Dependency-Injection-Lite](https://github.com/adammyhre/Unity-Dependency-Injection-Lite/tree/master) from [adammyhre](https://github.com/adammyhre)
+[Unity Dependency Injection Lite](https://github.com/adammyhre/Unity-Dependency-Injection-Lite/tree/master) from [adammyhre](https://github.com/adammyhre)
+
+[Unity Service Locator](https://github.com/adammyhre/Unity-Service-Locator) from [adammyhre](https://github.com/adammyhre)
