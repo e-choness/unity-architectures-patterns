@@ -57,7 +57,7 @@ The system relies on the[attributes and reflection](https://learn.microsoft.com/
 
 - Provide an instance through a provider.
 
-```CSharp
+```csharp
 class Provider{
     [Provide]
     public IService ProvideService() {
@@ -68,7 +68,7 @@ class Provider{
 
 - Self Provide
 
-```CSharp
+```csharp
 class SelfProvider: IDependencyProvider, ISelfProvider{
     [Provide]
     public ISelfProvider ProvideSelf(){
@@ -81,7 +81,7 @@ class SelfProvider: IDependencyProvider, ISelfProvider{
 
 - Field Injection
 
-```CSharp
+```csharp
 class Consumer{
     // A established provider can 
     [Inject] private IService _service;
@@ -90,7 +90,7 @@ class Consumer{
 
 - Method Injection
 
-```CSharp
+```csharp
 class Consumer{
     private IService _service;
     [Inject]
@@ -102,7 +102,7 @@ class Consumer{
 
 - Property Injection
 
-```CSharp
+```csharp
 class Consumer{
     [Inject] public IService Service {get; private set; }
 }
@@ -110,7 +110,7 @@ class Consumer{
 
 - Miltiple Injections
 
-```CSharp
+```csharp
 class Consumer{
     private IService _service;
     private IFactory _factory;
@@ -150,6 +150,51 @@ Inversion of Control is a way to decouple dependencies of services everytime a M
 | `ISerializer` | `MockSerializer` | Mocks a method `Serialize()` to serialize objects. |
 | `IAuthentication`| `MockAuthentication` | Mocks a method `Login()` to login user. |
 | `IGameService`| `MockGameService` | Mocks a method `StartGame()` to run the game. |
+
+## Class Extensions
+
+Unity `Object` and its inheritance classes can have extension methods to expand the generalized functionality not implemented officially by Unity Engine developers.
+
+### Code Snippet
+
+Disable all children inside the hierarchy of a game object but keep the parrent active.
+
+- Definition
+
+```csharp
+using UnityEngine;
+
+public static class GameObjectExtensions{
+
+    public static void DisableChildren(this GameObject gameObject) {
+        for(var i=0; i<gameObject.transform.childCount; i++){
+            gameObject.transform.GetChild(i).SetActive(false);
+        }
+    }
+}
+```
+
+- Usage in the test scene
+
+```csharp
+public class DisableChildrenTest : MonoBehaviour
+{
+    void Start()
+    {
+        GameObject parent = new(name: "Parent");
+
+        for (var i = 0; i < 5; i++)
+        {
+            GameObject child = new($"Child{i}");
+            child.transform.parent = parent.transform;
+        }
+        
+        parent.DisableChildren();
+    }
+}
+```
+
+While in play mode a GameObject named `Parent` is spawned and all it's children are disabled in the inspector.
 
 ## Credits
 
