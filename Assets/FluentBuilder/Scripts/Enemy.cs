@@ -12,11 +12,11 @@ namespace FluentBuilder.Scripts
     
         public class Builder
         {
-            private string _name;
-            private int _health;
-            private float _speed;
-            private int _damage;
-            private bool _isBoss;
+            private string _name = "DefaultName";
+            private int _health = 10;
+            private float _speed = 5.0f;
+            private int _damage = 20;
+            private bool _isBoss = false;
 
             public Builder WithName(string name)
             {
