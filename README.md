@@ -237,6 +237,10 @@ var enemyWithComponents = new Enemy.ComponentBuilder()
 
 Data-oriented objects can pass in as parameters for component configurations.
 
+### Forced Sequence Builder
+
+Interfaces enforce contracts, it's useful when component are constructed in a sequence. Each builder method returns the next return interface forces the builder call methods in a certain order.
+
 ## Class Extensions
 
 Unity `Object` and its inheritance classes can have extension methods to expand the generalized functionality not implemented officially by Unity Engine developers.
