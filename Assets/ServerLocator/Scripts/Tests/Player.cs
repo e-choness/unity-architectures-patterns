@@ -21,7 +21,7 @@ namespace ServerLocator.Scripts.Tests
             ServiceLocator.ForSceneOf(this).Register<ILocalization>(_localization = new MockLocalization());
             ServiceLocator.For(this).Register<ISerializer>(_serializer = new MockSerializer());
             ServiceLocator.ForSceneOf(this)
-                .Register<IAuthentication>(_authentication = gameObject.GetOrAdd<MockAuthentication>());
+                .Register(_authentication = gameObject.GetOrAdd<MockAuthentication>());
         }
 
         private void Start()

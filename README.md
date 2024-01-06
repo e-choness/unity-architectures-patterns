@@ -189,6 +189,58 @@ After getting services, we can call any service methods however we want.
 - SubScenes do not recognize `ServiceLocator` Scene or global. Might worth looking at if subscene is used in the project.
 - Loading multiple scenes at the same time `SceneServiceLocator` notice multiple instances, they should only be aware of the ones within the scene.
 
+## Fluent Builder
+
+When creating a new object with multiple attributes, overloading constructor can become cumbersome when more than for parameters need to be configured. Fluent Builder helps creating a new object with more readable code.
+
+A built-in class can access owner class' properties. On top of passing parameters, the builder can attach the component to the game object. So no manual attachment required.
+
+### Basic Field Type
+
+```csharp
+var enemy = new Enemy.Builder()
+                .WithName("Kobolt")
+                .WithDamange(10)
+                .WithSpeed(3f)
+                .WithHealth(20)
+                .WithIsBoss(false)
+                .Build();
+```
+
+No need to call `Instantiate()`, it's already instantiated.
+
+### Complex Field Type
+
+With data structures like maps and lists of objects, builder can shorten code lengths by using builder approach.
+
+```csharp
+    private Dictionary<string, Data> WeaponDataSet = new WeaponDataBuilder()
+        .AddSword("sword", 11, 200.0f)
+        .AddDagger("dagger", 13, 400.0f)
+        .AddBow("bow", 10, 100.0f)
+        .Build();
+```
+
+Initializing a dinctionary of weapon data is more compact comparing to adding entries one by one.
+
+### Component Builder
+
+Unity `MonoBehaviour` are attached to `GameObjects` as components. Component builder can streamline the process of adding components.
+
+```csharp
+var enemyWithComponents = new Enemy.ComponentBuilder()
+                .AddArmorComponent()
+                .AddWeaponComponent(weaponData)
+                .AddHealthComponent()
+                .Build();
+```
+
+Data-oriented objects can pass in as parameters for component configurations.
+
+### Forced Sequence Builder
+
+Interfaces enforce contracts, it's useful when component are constructed in a sequence. Each builder method returns the next return interface forces the builder call methods in a certain order.
+
 ## Class Extensions
 
 Unity `Object` and its inheritance classes can have extension methods to expand the generalized functionality not implemented officially by Unity Engine developers.
