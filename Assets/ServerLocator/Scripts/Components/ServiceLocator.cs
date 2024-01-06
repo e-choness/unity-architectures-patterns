@@ -69,7 +69,7 @@ namespace ServerLocator.Scripts.Components
             }
         }
         
-        public static ServiceLocator ForSceneOf(MonoBehaviour monoBehaviour)
+        private static ServiceLocator ForSceneOf(MonoBehaviour monoBehaviour)
         {
             var scene = monoBehaviour.gameObject.scene;
 
