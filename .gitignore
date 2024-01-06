@@ -13,9 +13,11 @@
 /[Mm]emoryCaptures/
 /[Uu]ser[Ss]ettings/
 /UserSettings/
+Assets/[Ss]ceneDependencyCache/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
+SceneDependencyCache.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
