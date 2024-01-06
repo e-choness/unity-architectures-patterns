@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ServerLocator.Scripts
+namespace ServerLocator.Scripts.Components
 {
     public class ServiceManager
     {
@@ -55,6 +55,23 @@ namespace ServerLocator.Scripts
 
             service = null;
             return false;
+        }
+
+        public bool TryGet(Type type, object service)
+        {
+            if (!type.IsInstanceOfType(service))
+            {
+                throw new ArgumentException("Type of service does not match type of service interface.",
+                    nameof(service));
+            }
+
+            if (!_services.ContainsKey(type))
+            {
+                Debug.LogError($"ServiceManager.Register: Service of type {type.FullName} is not registered.");
+                return false;
+            }
+            
+            return true;
         }
 
         public T Get<T>() where T : class

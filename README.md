@@ -137,7 +137,13 @@ Inversion of Control is a way to decouple dependencies of services everytime a M
 ### Service Locator Core Modules
 
 - `ServiceLocator` finds services for both the scene and global useage.
+  1. It acts as a singleton for both global and scenes depends on configuration.
+  2. The configurations check if other `ServiceLocator` is already registered in the scene and global, if so it does not create a new one.
+  3. For scene level `ServiceLocator` it will go through all root game objects to find one if it's not registered in the container.
+  4. Menu Items added under `GameObject/ServiceLocator/`. Both service locator variants can be added to the scene.
 - `Bootstrapper` initializes services on `Awake()`.
+  1. `GlobalBootstrapper` and `SceneBootstrapper` inherits from `Bootstrapper`. Each overrides `Bootstrap()` to call respective configurations and inistantiate instances on `Awake()`.
+  2. `GlobalBootstrapper` has additional configuration for persistent singleton if `dontDestoryOnLoad` is set to `true`;
 - `ServiceManager` Registers and gets services when needed.
   1. Both `Register` overloads go through the service type's registration and type check.
   2. Both `Get` and `TryGet` do registration and type check before return specified type of service.
