@@ -189,6 +189,28 @@ After getting services, we can call any service methods however we want.
 - SubScenes do not recognize `ServiceLocator` Scene or global. Might worth looking at if subscene is used in the project.
 - Loading multiple scenes at the same time `SceneServiceLocator` notice multiple instances, they should only be aware of the ones within the scene.
 
+## Fluent Builder
+
+When creating a new object with multiple attributes, overloading constructor can become cumbersome when more than for parameters need to be configured. Fluent Builder helps creating a new object with more readable code.
+
+A built-in class can access owner class' properties. On top of passing parameters, the builder can attach the component to the game object. So no manual attachment required.
+
+### Basic Field Type
+
+```csharp
+var enemy = new Enemy.Builder()
+                .WithName("Kobolt")
+                .WithDamange(10)
+                .WithSpeed(3f)
+                .WithHealth(20)
+                .WithIsBoss(false)
+                .Build();
+```
+
+No need to call `Instantiate()`, it's already instantiated.
+
+<!-- ### Complex Field Type
+ -->
 ## Class Extensions
 
 Unity `Object` and its inheritance classes can have extension methods to expand the generalized functionality not implemented officially by Unity Engine developers.
