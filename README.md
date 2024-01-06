@@ -209,8 +209,74 @@ var enemy = new Enemy.Builder()
 
 No need to call `Instantiate()`, it's already instantiated.
 
-<!-- ### Complex Field Type
- -->
+### Complex Field Type
+
+With data structures like maps and lists of objects, builder can shorten code lengths by using builder approach.
+
+```csharp
+public enum Type
+    {
+        Sword,
+        Dagger,
+        Bow
+    }
+
+public class Weapon : MonoBehaviour
+{
+    public string Name { get; set; } = "None";
+
+    private Dictionary<string, Data> WeaponDataSet = new WeaponDataBuilder()
+        .AddSword("sword", 11, 200.0f)
+        .AddDagger("dagger", 13, 400.0f)
+        .AddBow("bow", 10, 100.0f)
+        .Build();
+
+    public class Data
+    {
+        private int _damage;
+        private float _price;
+        private Type _type;
+
+        public Data(int damage, float price, Type type)
+        {
+            _damage = damage;
+            _price = price;
+            _type = type;
+        }
+    }
+
+    public class WeaponDataBuilder
+    {
+        private readonly Dictionary<string, Data> _dataSet = new();
+    
+        public WeaponDataBuilder AddSword(string key, int damage, float price)
+        {
+            _dataSet.Add(key, new Data(damage, price,Type.Sword));
+            return this;
+        }
+    
+        public WeaponDataBuilder AddDagger(string key, int damage, float price)
+        {
+            _dataSet.Add(key, new Data(damage, price, Type.Dagger));
+            return this;
+        }
+    
+        public WeaponDataBuilder AddBow(string key, int damage, float price)
+        {
+            _dataSet.Add(key, new Data(damage, price, Type.Bow));
+            return this;
+        }
+    
+        public Dictionary<string, Data> Build()
+        {
+            return _dataSet;
+        }
+    }
+}
+```
+
+Initializing a dinctionary of weapon data is more compact comparing to adding entries one by one.
+
 ## Class Extensions
 
 Unity `Object` and its inheritance classes can have extension methods to expand the generalized functionality not implemented officially by Unity Engine developers.
