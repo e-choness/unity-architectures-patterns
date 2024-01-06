@@ -1,3 +1,4 @@
+using FluentBuilder.Scripts.Interfaces;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -89,6 +90,37 @@ namespace FluentBuilder.Scripts
             {
                 var builtEnemy = _enemy;
                 // reset enemy for the next build process;
+                _enemy = new GameObject("Enemy").AddComponent<Enemy>();
+                return builtEnemy;
+            }
+        }
+
+        public class InterfaceBuilder : IEnemyBuilder, IWeaponEnemyBuilder, IHealthEnemyBuilder, IFinalEnemyBuilder
+        {
+            private Enemy _enemy = new GameObject("Enemy").AddComponent<Enemy>();
+
+
+            public IWeaponEnemyBuilder AddArmorComponent()
+            {
+                _enemy.gameObject.AddComponent<Armor>();
+                return this;
+            }
+
+            public IHealthEnemyBuilder AddWeaponComponent()
+            {
+                _enemy.gameObject.AddComponent<Weapon>();
+                return this;
+            }
+
+            public IFinalEnemyBuilder AddHealthComponent()
+            {
+                _enemy.gameObject.AddComponent<Health>();
+                return this;
+            }
+
+            public Enemy Build()
+            {
+                var builtEnemy = _enemy;
                 _enemy = new GameObject("Enemy").AddComponent<Enemy>();
                 return builtEnemy;
             }

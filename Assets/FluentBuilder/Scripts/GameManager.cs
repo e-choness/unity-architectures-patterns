@@ -25,6 +25,12 @@ namespace FluentBuilder.Scripts
                 .AddWeaponComponent()
                 .AddHealthComponent()
                 .Build();
+
+            var enemyWithInterfaces = new Enemy.InterfaceBuilder()
+                .AddArmorComponent()
+                .AddWeaponComponent()
+                .AddHealthComponent()
+                .Build();
         }
     }
 }
