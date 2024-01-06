@@ -13,7 +13,7 @@ namespace FluentBuilder.Scripts
     }
     public class Weapon : MonoBehaviour
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "None";
 
         private Dictionary<string, Data> WeaponDataSet = new WeaponDataBuilder()
             .AddSword("sword", 11, 200.0f)

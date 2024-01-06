@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace FluentBuilder.Scripts
@@ -36,9 +37,9 @@ namespace FluentBuilder.Scripts
                 return this;
             }
 
-            public Builder WithDamange(int damange)
+            public Builder WithDamage(int damage)
             {
-                _damage = damange;
+                _damage = damage;
                 return this;
             }
 
@@ -59,6 +60,37 @@ namespace FluentBuilder.Scripts
                 enemy.IsBoos = _isBoss;
                 Debug.Log($"Enemy build - name: {enemy.Name} health: {enemy.Health} speed: {enemy.Speed} damage: {enemy.Damage} Is a boss: {enemy.IsBoos}");
                 return enemy;
+            }
+        }
+
+        public class ComponentBuilder
+        {
+            private Enemy _enemy = new GameObject("Enemy").AddComponent<Enemy>();
+
+            public ComponentBuilder AddWeaponComponent()
+            {
+                _enemy.gameObject.AddComponent<Weapon>();
+                return this;
+            }
+
+            public ComponentBuilder AddHealthComponent()
+            {
+                _enemy.gameObject.AddComponent<Health>();
+                return this;
+            }
+
+            public ComponentBuilder AddArmorComponent()
+            {
+                _enemy.gameObject.AddComponent<Armor>();
+                return this;
+            }
+
+            public Enemy Build()
+            {
+                var builtEnemy = _enemy;
+                // reset enemy for the next build process;
+                _enemy = new GameObject("Enemy").AddComponent<Enemy>();
+                return builtEnemy;
             }
         }
     }

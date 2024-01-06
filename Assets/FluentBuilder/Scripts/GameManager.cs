@@ -8,7 +8,7 @@ namespace FluentBuilder.Scripts
         {
             var enemy = new Enemy.Builder()
                 .WithName("Kobolt")
-                .WithDamange(10)
+                .WithDamage(10)
                 .WithSpeed(3f)
                 .WithHealth(20)
                 .WithIsBoss(false)
@@ -19,6 +19,12 @@ namespace FluentBuilder.Scripts
                 .Build();
             // Instantiate creates a clone
             // Instantiate(enemy,Vector3.zero,Quaternion.identity);
+
+            var enemyWithComponents = new Enemy.ComponentBuilder()
+                .AddArmorComponent()
+                .AddWeaponComponent()
+                .AddHealthComponent()
+                .Build();
         }
     }
 }
