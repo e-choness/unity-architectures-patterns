@@ -14,8 +14,11 @@ namespace FluentBuilder.Scripts
                 .WithIsBoss(false)
                 .Build();
             
+            var weapon = new Weapon.Builder()
+                .WithName("Arc")
+                .Build();
             // Instantiate creates a clone
-            Instantiate(enemy,Vector3.zero,Quaternion.identity);
+            // Instantiate(enemy,Vector3.zero,Quaternion.identity);
         }
     }
 }

@@ -57,6 +57,7 @@ namespace FluentBuilder.Scripts
                 enemy.Speed = _speed;
                 enemy.Damage = _damage;
                 enemy.IsBoos = _isBoss;
+                Debug.Log($"Enemy build - name: {enemy.Name} health: {enemy.Health} speed: {enemy.Speed} damage: {enemy.Damage} Is a boss: {enemy.IsBoos}");
                 return enemy;
             }
         }
