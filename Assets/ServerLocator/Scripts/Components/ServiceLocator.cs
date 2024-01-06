@@ -138,6 +138,11 @@ namespace ServerLocator.Scripts.Components
             return _services.TryGet(out service);
         }
 
+        bool TryGetService<T>(Type type, object service) where T : class
+        {
+            return _services.TryGet(type, service);
+        }
+
         bool TryGetInHierarchy(out ServiceLocator container)
         {
             if (this == _serviceLocatorGlobal)
