@@ -11,7 +11,7 @@ namespace ServerLocator.Scripts.Components
     public class ServiceLocator : MonoBehaviour
     {
         // global and scene service locators act as singletons.
-        private static ServiceLocator _serviceLocatorGlobal;
+        private static ServiceLocator _global;
         private static Dictionary<Scene, ServiceLocator> _sceneContainers;
         private static List<GameObject> _rootGameObjects;
         
@@ -23,16 +23,16 @@ namespace ServerLocator.Scripts.Components
         #region Configurations
         internal void ConfigureAsGlobal(bool dontDestroyOnLoad)     
         {
-            if (_serviceLocatorGlobal == this)
+            if (_global == this)
             {
                 Debug.LogWarning("ServiceLocator.ConfigurationAsGlobal: global is already configured.", this);
-            } else if (_serviceLocatorGlobal != this)
+            } else if (_global != null)
             {
                 Debug.LogError("ServiceLocator.ConfigurationAsGlobal: other global service locator is configured.", this);
             }
             else
             {
-                _serviceLocatorGlobal = this;
+                _global = this;
                 if(dontDestroyOnLoad) DontDestroyOnLoad(gameObject);
             }
         }
@@ -50,26 +50,26 @@ namespace ServerLocator.Scripts.Components
         #endregion
 
         #region Service Locator Bootstrap
-        public static ServiceLocator ServiceLocatorGlobal
+        public static ServiceLocator Global
         {
             get
             {
-                if (_serviceLocatorGlobal != null) return _serviceLocatorGlobal;
+                if (_global != null) return _global;
 
                 if (FindFirstObjectByType<GlobalBootstrapper>() is { } found)
                 {
                     found.BootstrapOnDemand();
-                    return _serviceLocatorGlobal;
+                    return _global;
                 }
 
                 var container = new GameObject(GlobalName, typeof(ServiceLocator));
                 container.AddComponent<GlobalBootstrapper>().BootstrapOnDemand();
 
-                return _serviceLocatorGlobal;
+                return _global;
             }
         }
         
-        private static ServiceLocator ForSceneOf(MonoBehaviour monoBehaviour)
+        public static ServiceLocator ForSceneOf(MonoBehaviour monoBehaviour)
         {
             var scene = monoBehaviour.gameObject.scene;
 
@@ -92,14 +92,14 @@ namespace ServerLocator.Scripts.Components
             }
 
             // If two cases above failed to retrieve scene service locator, return the global one
-            return _serviceLocatorGlobal;
+            return _global;
         }
 
         public static ServiceLocator For(MonoBehaviour monoBehaviour)
         {
             return monoBehaviour.GetComponentInParent<ServiceLocator>().OrNull() ??
                    ForSceneOf(monoBehaviour) ?? 
-                   _serviceLocatorGlobal;
+                   _global;
         }
         
         #endregion
@@ -145,7 +145,7 @@ namespace ServerLocator.Scripts.Components
 
         bool TryGetInHierarchy(out ServiceLocator container)
         {
-            if (this == _serviceLocatorGlobal)
+            if (this == _global)
             {
                 container = null;
                 return false;
@@ -163,9 +163,9 @@ namespace ServerLocator.Scripts.Components
 
         private void OnDestroy()
         {
-            if (this == _serviceLocatorGlobal)
+            if (this == _global)
             {
-                _serviceLocatorGlobal = null;
+                _global = null;
             }else if (_sceneContainers.ContainsValue(this))
             {
                 _sceneContainers.Remove(gameObject.scene);
@@ -175,7 +175,7 @@ namespace ServerLocator.Scripts.Components
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics()
         {
-            _serviceLocatorGlobal = null;
+            _global = null;
             _sceneContainers = new();
             _rootGameObjects = new();
         }

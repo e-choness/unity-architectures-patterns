@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ServerLocator.Scripts.Services
 {
-    public class MockAuthentication : IAuthentication
+    public class MockAuthentication : MonoBehaviour, IAuthentication
     {
         public void Login()
         {

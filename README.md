@@ -154,8 +154,40 @@ Inversion of Control is a way to decouple dependencies of services everytime a M
 |--|--|--|
 | `ILocalization` | `MockLocalization` | Mocks a method `GetLocalizedWord()` that takes a word and get translation of another language. |
 | `ISerializer` | `MockSerializer` | Mocks a method `Serialize()` to serialize objects. |
-| `IAuthentication`| `MockAuthentication` | Mocks a method `Login()` to login user. |
+| `IAuthentication`| `MockAuthentication` | Mocks a method `Login()` to login user. Note: It's a `MonoBehaviour`. |
 | `IGameService`| `MockGameService` | Mocks a method `StartGame()` to run the game. |
+
+### Test Scenes
+
+- Register Services
+  
+Inside `MainScene`, a `Player` object registers for global, scene and self scale services. Registration is done in `Awake()`
+Note: MockAuthentication is a MonoBehaviour. In this case, GameObjectExtension `GetOrAdd` is used to instantiate it.
+
+```csharp
+ServiceLocator.Global.Register<IGameService>(_gameService = new MockGameService());
+            ServiceLocator.ForSceneOf(this).Register<ILocalization>(_localization = new MockLocalization());
+            ServiceLocator.For(this).Register<ISerializer>(_serializer = new MockSerializer());
+            ServiceLocator.ForSceneOf(this)
+                .Register<IAuthentication>(_authentication = gameObject.GetOrAdd<MockAuthentication>());
+```
+
+- Get Services
+
+```csharp
+ServiceLocator.For(this)
+                .Get(out _serializer)
+                .Get(out _localization)
+                .Get(out _gameService)
+                .Get(out _authentication);
+```
+
+After getting services, we can call any service methods however we want.
+
+### Known Issues
+
+- SubScenes do not recognize `ServiceLocator` Scene or global. Might worth looking at if subscene is used in the project.
+- Loading multiple scenes at the same time `SceneServiceLocator` notice multiple instances, they should only be aware of the ones within the scene.
 
 ## Class Extensions
 
@@ -171,7 +203,6 @@ Disable all children inside the hierarchy of a game object but keep the parrent 
 using UnityEngine;
 
 public static class GameObjectExtensions{
-
     public static void DisableChildren(this GameObject gameObject) {
         for(var i=0; i<gameObject.transform.childCount; i++){
             gameObject.transform.GetChild(i).SetActive(false);
