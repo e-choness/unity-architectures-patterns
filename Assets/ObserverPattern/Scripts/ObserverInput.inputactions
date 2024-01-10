@@ -1,0 +1,54 @@
+{
+    "name": "ObserverInput",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "5b5b6a3b-e4b9-4c5e-8a36-782b90e8abe6",
+            "actions": [
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "5b3321d6-ee36-42aa-9c93-3a450460ba11",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Position",
+                    "type": "PassThrough",
+                    "id": "352b4b8e-6582-4234-8605-01663ef0680d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "28faa5bf-2d8e-444d-af98-b6844ab92c61",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eaad7115-fe92-40a3-9104-4f403a5ef90b",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
