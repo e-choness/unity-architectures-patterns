@@ -241,6 +241,57 @@ Data-oriented objects can pass in as parameters for component configurations.
 
 Interfaces enforce contracts, it's useful when component are constructed in a sequence. Each builder method returns the next return interface forces the builder call methods in a certain order.
 
+## Observer Pattern
+
+When having behaviour asssociated with a value, observer pattern can come in handy updating the value across the board. Such as losing health on the player, an Observer updates the health value to the UI when changed.
+
+### Use Cases
+
+An example: by hitting a button, player gain 10 points of energy.
+
+- On `Player`
+
+```csharp
+public class Player : MonoBehaviour{
+    [SerializeField] public Observer<int> Energy = new();
+    private InputAction _clickAction;
+    
+    private void Start(){
+        Energy.Invoke();
+    }
+    
+    private void Enable(){
+        var input = new PlayerController();
+        _clickAction = input.Mouse.Click;
+        _clickAction.Enable();
+        _clickAction += _ => { Energy.Value += 10;}
+    }
+
+    private void Disable(){
+        _clickAction.Disable();
+    }
+}
+```
+
+- On `Display`
+
+```csharp
+public class Display : MonoBehaviour{
+    TMP_Text energyLabel;
+    private void Awake() {
+        energyLabel = GetComponent<TMP_Text>();
+    }
+
+    public void UpdateEnergyDisplay(int energy){
+        energyLabel.text = $"Energy: {energy}";
+    }
+}
+```
+
+Afterward, go to the inspector and subscribe `UpdateEnergyDisplay` to `Player` component `Energy` section, open the drop down to add the function to the event.
+
+Note: it can also be used for custom in-editor tools as well.
+
 ## Class Extensions
 
 Unity `Object` and its inheritance classes can have extension methods to expand the generalized functionality not implemented officially by Unity Engine developers.
