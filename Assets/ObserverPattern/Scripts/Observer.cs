@@ -16,6 +16,8 @@ namespace ObserverPattern.Scripts
             set => Set(value);
         }
 
+        public static implicit operator T(Observer<T> observer) => observer.value;
+
         public Observer(T value, UnityAction<T> callback = null)
         {
             this.value = value;
