@@ -292,6 +292,39 @@ Afterward, go to the inspector and subscribe `UpdateEnergyDisplay` to `Player` c
 
 Note: it can also be used for custom in-editor tools as well.
 
+## Singleton Pattern
+
+Previously Singleton was used in Dependency Injection examples. Singleton pattern makes sure a single instance exists across the software life cycle. In Unity use cases, singleton can only exists as long as one scene exists, or persists as long as the game is running. More complicated than that singleton can self-updating by assign new updated instances to itself.
+
+### Regular Singleton
+
+It inherits from `MonoBehaviour` and takes generics that are `Component`. Check if the instance doesn't exist, create a new one. And initialize the instance upon `Awake()`.
+
+### Persistent Singleton
+
+It is the same logic as Regular Singleton. The only difference is that if a `GameObject` persists throughout multiple scenes, it should be located in the root level and no parent `GameObject`. `transform.SetParent(null)` unparent the `GameObject`. Upon `Awake()` after assigning the instance to self, add `DontDestroyOnLoad(gameObject)`.
+
+### Regulator Singlton
+
+Regulator Singleton records the time an instance is created and assign the newest one to itself, at the same time destroy the older instances. It manages itself so no need to expose time related properties.
+
+### How To Use
+
+Very simple. Replace `MonoBehaviour` with `Singleton<>` like:
+
+```csharp
+public class ForeverAlone : MonoBehaviour
+{
+    // Class implementations
+}
+```
+
+```csharp
+public class ForeverAlone : Singleton<ForeverAlone>{
+    // Class implementations
+}
+```
+
 ## Class Extensions
 
 Unity `Object` and its inheritance classes can have extension methods to expand the generalized functionality not implemented officially by Unity Engine developers.
