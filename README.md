@@ -292,6 +292,17 @@ Afterward, go to the inspector and subscribe `UpdateEnergyDisplay` to `Player` c
 
 Note: it can also be used for custom in-editor tools as well.
 
+## Command Pattern
+
+Reusable commands can be entities of their own. Commands can be abstracted and self-sufficient to provide generic instances.
+
+### New Interface Features
+
+C# has introduced interface new features:
+
+- Default method implementations. It can reduce abstract class overhead. Not need to implement defaults in abstract classes with the interface.
+- Inner class with the same interface can be used to represent default or null object instances.
+
 ## Singleton Pattern
 
 Previously Singleton was used in Dependency Injection examples. Singleton pattern makes sure a single instance exists across the software life cycle. In Unity use cases, singleton can only exists as long as one scene exists, or persists as long as the game is running. More complicated than that singleton can self-updating by assign new updated instances to itself.
