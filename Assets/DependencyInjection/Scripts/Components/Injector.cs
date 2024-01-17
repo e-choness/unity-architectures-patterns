@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using DependencyInjection.Scripts.Attributes;
 using DependencyInjection.Scripts.Interfaces;
-using DependencyInjection.Scripts.Utilities;
+using Singleton.Scripts;
 using UnityEngine;
 
 namespace DependencyInjection.Scripts.Components
