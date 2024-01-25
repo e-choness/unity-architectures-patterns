@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.rmc.rmc-mini-mvcs": {
+      "version": "https://github.com/SamuelAsherRivello/rmc-mini-mvcs.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d47e8f6708914136a657fdd12dfd48ce42f85fdb"
+    },
     "com.unity.burst": {
       "version": "1.8.8",
       "depth": 1,
