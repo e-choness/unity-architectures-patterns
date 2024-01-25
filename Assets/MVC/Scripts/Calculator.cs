@@ -19,7 +19,7 @@ namespace MVC.Scripts
         {
             if (!IsInitialized)
             {
-                // Context
+                // Context - it is the clue that connects the views, controllers and models
                 IsInitialized = true;
                 _context = new Context();
                 
@@ -40,7 +40,7 @@ namespace MVC.Scripts
 
         public void RequireIsInitialized()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

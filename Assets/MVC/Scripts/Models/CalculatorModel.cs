@@ -1,28 +1,16 @@
 ﻿using RMC.Core.Architectures.Mini.Context;
 using RMC.Core.Architectures.Mini.Model;
+using UnityEngine;
 
 namespace MVC.Scripts.Models
 {
     public class CalculatorModel : BaseModel
     {
-        private Observable<int> _a = new();
-        private Observable<int> _b = new();
-        private Observable<int> _result = new();
+        public Observable<int> A { get; } = new();
 
-        public Observable<int> A
-        {
-            get { return _a; }
-        }
+        public Observable<int> B { get; } = new();
 
-        public Observable<int> B
-        {
-            get { return _b; }
-        }
-
-        public Observable<int> Result
-        {
-            get { return _result; }
-        }
+        public Observable<int> Result { get; } = new();
 
         public override void Initialize(IContext context)
         {
@@ -30,9 +18,9 @@ namespace MVC.Scripts.Models
             {
                 base.Initialize(context);
 
-                _a.Value = 0;
-                _b.Value = 0;
-                _result.Value = 0;
+                A.Value = 0;
+                B.Value = 0;
+                Result.Value = 0;
             }
         }
     }

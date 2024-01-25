@@ -28,29 +28,25 @@ namespace MVC.Scripts.Controllers
                 // Add listeners
                 _calculatorView.OnAdd.AddListener(View_OnAdd);
                 _calculatorView.OnReset.AddListener(View_OnReset);
+                View_OnReset();
             }
         }
 
         public void RequireIsInitialized()
         {
-            throw new System.NotImplementedException();
-        }
-
-        private void View_OnAdd()
-        {
-            RequireIsInitialized();
-            
-            _calculatorModel.A.Value = int.Parse(_calculatorView.aInputField.text);
-            _calculatorModel.B.Value = int.Parse(_calculatorView.bInputField.text);
-            _calculatorModel.Result.Value = _calculatorModel.A.Value + _calculatorModel.B.Value;
-        }
-
-        private void View_OnReset()
-        {
-            RequireIsInitialized();
             _calculatorModel.A.Value = 0;
             _calculatorModel.B.Value = 0;
             _calculatorModel.Result.Value = 0;
         }
+
+        private void View_OnAdd()
+        {
+            _calculatorModel.A.Value = int.Parse(_calculatorView.AInputField.text);
+            _calculatorModel.B.Value = int.Parse(_calculatorView.BInputField.text);
+            _calculatorModel.Result.Value = _calculatorModel.A.Value + _calculatorModel.B.Value;
+
+        }
+
+        private void View_OnReset() => RequireIsInitialized();
     }
 }
