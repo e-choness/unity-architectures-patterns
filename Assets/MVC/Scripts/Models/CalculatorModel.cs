@@ -1,6 +1,5 @@
 ﻿using RMC.Core.Architectures.Mini.Context;
 using RMC.Core.Architectures.Mini.Model;
-using UnityEngine;
 
 namespace MVC.Scripts.Models
 {
