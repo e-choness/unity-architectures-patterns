@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "d47e8f6708914136a657fdd12dfd48ce42f85fdb"
+      "hash": "87cb30f77980eb03e47ed6086f1fa08aeb2e5f60"
     },
     "com.unity.burst": {
       "version": "1.8.15",
@@ -91,7 +91,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.28",
+      "version": "3.0.31",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -364,11 +364,11 @@
       "url": "https://packages.unity.com"
     },
     "jp.hadashikick.vcontainer": {
-      "version": "https://github.com/hadashiA/VContainer.git?path=VContainer/Assets/VContainer#1.14.0",
+      "version": "https://github.com/hadashiA/VContainer.git?path=VContainer/Assets/VContainer#1.16.1",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "d37fb21ba4d17f3a80effdc8119d985d8d150ebe"
+      "hash": "c9dcf7041cf7ff3d6451a55cb75dbb99e589e13e"
     },
     "net.tnrd.nsubstitute": {
       "version": "https://github.com/Thundernerd/Unity3D-NSubstitute.git",
