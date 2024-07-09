@@ -1,5 +1,6 @@
-﻿using RMC.Core.Architectures.Mini.Context;
-using RMC.Core.Architectures.Mini.Model;
+﻿using RMC.Core.Observables;
+using RMC.Mini;
+using RMC.Mini.Model;
 
 namespace MVC.Scripts.Models
 {

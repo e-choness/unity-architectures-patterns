@@ -1,7 +1,7 @@
 using System;
 using MVC.Scripts.Models;
-using RMC.Core.Architectures.Mini.Context;
-using RMC.Core.Architectures.Mini.View;
+using RMC.Mini;
+using RMC.Mini.View;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -29,7 +29,7 @@ namespace MVC.Scripts.Views
 
         public void Initialize()
         {
-            throw new System.NotImplementedException();
+            
         }
         
         public void Initialize(IContext context)
@@ -90,5 +90,9 @@ namespace MVC.Scripts.Views
             return input.Length > 0 && input != "0";
         }
 
+        public void Dispose()
+        {
+            
+        }
     }
 }
