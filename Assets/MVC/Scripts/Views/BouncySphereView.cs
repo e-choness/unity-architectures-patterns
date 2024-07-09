@@ -1,5 +1,5 @@
-using RMC.Core.Architectures.Mini.Context;
-using RMC.Core.Architectures.Mini.View;
+using RMC.Mini;
+using RMC.Mini.View;
 using UnityEngine;
 
 namespace MVC.Scripts.Views
@@ -11,12 +11,17 @@ namespace MVC.Scripts.Views
 
         public void Initialize(IContext context)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void RequireIsInitialized()
         {
-            throw new System.NotImplementedException();
+            
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

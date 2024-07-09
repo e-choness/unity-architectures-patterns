@@ -1,15 +1,24 @@
 using MVC.Scripts.Controllers;
 using MVC.Scripts.Models;
 using MVC.Scripts.Views;
-using RMC.Core.Architectures.Mini.Context;
+using RMC.Mini;
+using RMC.Mini.Controller;
+using RMC.Mini.Model;
+using RMC.Mini.Service;
+using RMC.Mini.View;
 
 namespace MVC.Scripts
 {
-    public class Calculator : IMiniMvcs
+    public class Calculator : IMiniMvcs<IContext, IModel, IView, IController, IService>
     {
         public bool IsInitialized { get; private set; }
         private IContext _context;
         private CalculatorView _calculatorView;
+        public IContext Context { get; }
+        public Locator<IModel> ModelLocator { get; }
+        public Locator<IView> ViewLocator { get; }
+        public Locator<IController> ControllerLocator { get; }
+        public Locator<IService> ServiceLocator { get; }
 
         public Calculator(CalculatorView calculatorView)
         {
@@ -42,5 +51,7 @@ namespace MVC.Scripts
         {
             
         }
+
+        
     }
 }

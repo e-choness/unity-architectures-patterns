@@ -1,7 +1,7 @@
 ﻿using MVC.Scripts.Models;
 using MVC.Scripts.Views;
-using RMC.Core.Architectures.Mini.Context;
-using RMC.Core.Architectures.Mini.Controller;
+using RMC.Mini;
+using RMC.Mini.Controller;
 
 namespace MVC.Scripts.Controllers
 {
@@ -48,5 +48,9 @@ namespace MVC.Scripts.Controllers
         }
 
         private void View_OnReset() => RequireIsInitialized();
+        public void Dispose()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
